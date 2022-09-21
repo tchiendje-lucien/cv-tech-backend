@@ -4,9 +4,9 @@ import java.util.List;
 
 import peoplelocation.peoplelocation.MessageReponse;
 import peoplelocation.peoplelocation.entites.AcademicLevels;
+import peoplelocation.peoplelocation.entites.Civility;
 import peoplelocation.peoplelocation.entites.Nationality;
 import peoplelocation.peoplelocation.entites.Postes;
-import peoplelocation.peoplelocation.entites.Quartiers;
 import peoplelocation.peoplelocation.entites.Rules;
 import peoplelocation.peoplelocation.entites.Speciality;
 import peoplelocation.peoplelocation.entites.Types;
@@ -41,12 +41,12 @@ public interface SettingServices {
 
     List<Villes> list_ville();
 
-    // Quatier Services
-    MessageReponse create_quartier(Quartiers quartiers);
+    // // Quatier Services
+    // MessageReponse create_quartier(Quartiers quartiers);
 
-    MessageReponse update_quartier(Quartiers quartiers);
+    // MessageReponse update_quartier(Quartiers quartiers);
 
-    List<Quartiers> list_quartier();
+    // List<Quartiers> list_quartier();
 
     // Academic level services
     MessageReponse create_academicLevel(AcademicLevels academicLevels);
@@ -68,5 +68,12 @@ public interface SettingServices {
     MessageReponse update_rule(Rules rules);
 
     List<Rules> list_rule();
+
+    // Specility services
+    MessageReponse create_civility(Civility civility);
+
+    MessageReponse update_civility(Civility civility);
+
+    List<Civility> list_civility();
 
 }

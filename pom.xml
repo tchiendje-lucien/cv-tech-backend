@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>8</java.version>
+		<version.commons-io>2.4</version.commons-io>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -56,6 +57,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			  <artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		  </dependency>
 	</dependencies>
 
 	<build>

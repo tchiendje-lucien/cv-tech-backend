@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import peoplelocation.peoplelocation.MessageReponse;
 import peoplelocation.peoplelocation.entites.AcademicLevels;
+import peoplelocation.peoplelocation.entites.Civility;
 import peoplelocation.peoplelocation.entites.Nationality;
 import peoplelocation.peoplelocation.entites.Postes;
 import peoplelocation.peoplelocation.entites.Rules;
@@ -129,5 +130,20 @@ public class SettingController {
     @GetMapping(value = "list_rule")
     public List<Rules> list_rule() {
         return settingServices.list_rule();
+    }
+
+    @PostMapping(value = "add_civility")
+    public MessageReponse add_civility(@RequestBody Civility civility) {
+        return settingServices.create_civility(civility);
+    }
+
+    @PostMapping(value = "update_civility")
+    public MessageReponse update_civility(@RequestBody Civility civility) {
+        return settingServices.update_civility(civility);
+    }
+
+    @GetMapping(value = "list_civility")
+    public List<Civility> list_civility() {
+        return settingServices.list_civility();
     }
 }

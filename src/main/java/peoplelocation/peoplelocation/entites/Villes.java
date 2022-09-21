@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +29,7 @@ public class Villes implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
     private String name;
+    @JsonIgnore
     @OneToMany(mappedBy = "villes")
     Collection<Candidates> candidates;
-    @OneToMany(mappedBy = "villes")
-    Collection<Quartiers> quartiers;
 }

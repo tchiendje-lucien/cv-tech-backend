@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,13 +31,16 @@ public class Candidates implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
     private String fullname;
+    private String codeCdt;
+    private String email;
     private Date birthDate;
     private String sexe;
-    private String civility;
     private String adress;
     private Integer childrenNum;
     private Integer exprience_num;
-    private Integer phone;
+    private String phone;
+    private String quartier;
+    private String created_at;
     @ManyToOne
     private Villes villes;
     @ManyToOne
@@ -49,11 +55,15 @@ public class Candidates implements Serializable {
     private Users users;
     @ManyToOne
     private AcademicLevels academicLevels;
+    @ManyToOne
+    private Civility civility;
+    @JsonIgnore
     @OneToMany(mappedBy = "candidates")
-    Collection<Interviews> interviews;
+    Collection<Interviews> interviews;  
     @OneToMany(mappedBy = "candidates")
+    @JsonIgnore
     Collection<CdtPostes> cdtPostes;
     @OneToMany(mappedBy = "candidates")
-    Collection<Folders> folders;
+    Collection<Attachements> attachements;
 
 }

@@ -31,6 +31,7 @@ public class Users implements Serializable {
     private Long oid;
     private String fullname;
     private String userID;
+    //@JsonProperty(access = Access.WRITE_ONLY )
     private String password;
     private String re_password;
     @ManyToOne

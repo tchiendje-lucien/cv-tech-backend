@@ -1,7 +1,6 @@
 package peoplelocation.peoplelocation.services.implementations;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +8,17 @@ import org.springframework.stereotype.Service;
 
 import peoplelocation.peoplelocation.MessageReponse;
 import peoplelocation.peoplelocation.dao.AcademicLevelsRepository;
+import peoplelocation.peoplelocation.dao.CivilityRepository;
 import peoplelocation.peoplelocation.dao.NationalityRepository;
 import peoplelocation.peoplelocation.dao.PostesRepository;
-import peoplelocation.peoplelocation.dao.QuartiersRepository;
 import peoplelocation.peoplelocation.dao.RulesRepository;
 import peoplelocation.peoplelocation.dao.SpecialityRepository;
 import peoplelocation.peoplelocation.dao.TypesRepository;
 import peoplelocation.peoplelocation.dao.VillesRepository;
 import peoplelocation.peoplelocation.entites.AcademicLevels;
+import peoplelocation.peoplelocation.entites.Civility;
 import peoplelocation.peoplelocation.entites.Nationality;
 import peoplelocation.peoplelocation.entites.Postes;
-import peoplelocation.peoplelocation.entites.Quartiers;
 import peoplelocation.peoplelocation.entites.Rules;
 import peoplelocation.peoplelocation.entites.Speciality;
 import peoplelocation.peoplelocation.entites.Types;
@@ -37,14 +36,16 @@ public class SettingImplement implements SettingServices {
     PostesRepository postesRepository;
     @Autowired
     VillesRepository villesRepository;
-    @Autowired
-    QuartiersRepository quartiersRepository;
+    // @Autowired
+    // QuartiersRepository quartiersRepository;
     @Autowired
     AcademicLevelsRepository academicLevelsRepository;
     @Autowired
     NationalityRepository nationalityRepository;
     @Autowired
     RulesRepository rulesRepository;
+    @Autowired
+    CivilityRepository civilityRepository;
 
     @Override
     public MessageReponse create_type(Types types) {
@@ -162,34 +163,35 @@ public class SettingImplement implements SettingServices {
         return villesRepository.findAll();
     }
 
-    @Override
-    public MessageReponse create_quartier(Quartiers quartiers) {
-        if (!quartiersRepository.findByName(quartiers.getName()).isEmpty()) {
-            return new MessageReponse("Ce nom est deja utilisé");
-        }
-        quartiersRepository.save(quartiers);
-        return new MessageReponse("Enreigistrement effectué avec success");
-    }
+    // @Override
+    // public MessageReponse create_quartier(Quartiers quartiers) {
+    // if (!quartiersRepository.findByName(quartiers.getName()).isEmpty()) {
+    // return new MessageReponse("Ce nom est deja utilisé");
+    // }
+    // quartiersRepository.save(quartiers);
+    // return new MessageReponse("Enreigistrement effectué avec success");
+    // }
 
-    @Override
-    public MessageReponse update_quartier(Quartiers quartiers) {
-        if (!quartiersRepository.findByName(quartiers.getName()).isEmpty()) {
-            return new MessageReponse("Ce nom est deja utilisé");
-        }
-        Optional<Quartiers> get_quartier = quartiersRepository.findById(quartiers.getOid());
-        if (get_quartier.isPresent()) {
-            get_quartier.get().setName(quartiers.getName());
-            quartiersRepository.save(get_quartier.get());
-            return new MessageReponse("Modification effectué avec success");
-        } else {
-            return new MessageReponse("Cet element n'existe pas");
-        }
-    }
+    // @Override
+    // public MessageReponse update_quartier(Quartiers quartiers) {
+    // if (!quartiersRepository.findByName(quartiers.getName()).isEmpty()) {
+    // return new MessageReponse("Ce nom est deja utilisé");
+    // }
+    // Optional<Quartiers> get_quartier =
+    // quartiersRepository.findById(quartiers.getOid());
+    // if (get_quartier.isPresent()) {
+    // get_quartier.get().setName(quartiers.getName());
+    // quartiersRepository.save(get_quartier.get());
+    // return new MessageReponse("Modification effectué avec success");
+    // } else {
+    // return new MessageReponse("Cet element n'existe pas");
+    // }
+    // }
 
-    @Override
-    public List<Quartiers> list_quartier() {
-        return quartiersRepository.findAll();
-    }
+    // @Override
+    // public List<Quartiers> list_quartier() {
+    // return quartiersRepository.findAll();
+    // }
 
     @Override
     public MessageReponse create_academicLevel(AcademicLevels academicLevels) {
@@ -275,6 +277,35 @@ public class SettingImplement implements SettingServices {
     @Override
     public List<Rules> list_rule() {
         return rulesRepository.findAll();
+    }
+
+    @Override
+    public MessageReponse create_civility(Civility civility) {
+        if (!civilityRepository.findByName(civility.getName()).isEmpty()) {
+            return new MessageReponse("Ce nom existe deja");
+        }
+        civilityRepository.save(civility);
+        return new MessageReponse("Enreigistrement effectué avec success");
+    }
+
+    @Override
+    public MessageReponse update_civility(Civility civility) {
+        if (!civilityRepository.findByName(civility.getName()).isEmpty()) {
+            return new MessageReponse("Ce nom existe deja");
+        }
+        Optional<Civility> get_civility = civilityRepository.findById(civility.getOid());
+        if (get_civility.isPresent()) {
+            get_civility.get().setName(civility.getName());
+            civilityRepository.save(get_civility.get());
+            return new MessageReponse("Modification effectué avec success");
+        } else {
+            return new MessageReponse("Cet element n'existe pas");
+        }
+    }
+
+    @Override
+    public List<Civility> list_civility() {
+        return civilityRepository.findAll();
     }
 
 }
